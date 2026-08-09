@@ -1,0 +1,23 @@
+# Contributing to GBSS Agency Automation Registry
+
+Thank you for your interest in contributing to the Automation Registry! We welcome scripts, bug fixes, workflow optimizations, and documentation improvements from developers and digital operations specialists of all skill levels.
+
+Please follow these guidelines to ensure a smooth contribution process:
+
+## 📋 Code of Conduct
+* Be respectful and constructive in all discussions and pull requests.
+* Ensure any code you submit is your own or properly licensed for open-source sharing.
+
+## 🛠️ How to Submit a Contribution
+
+1. **Find or Open an Issue:** If you plan to add a new feature or major script, please open an issue first to discuss it with the maintainers.
+2. **Fork and Clone:** Fork this repository to your own GitHub account and clone it to your local machine.
+3. **Create a Branch:** Create a descriptive branch for your work (e.g., `git checkout -b feature/excel-automation-script`).
+4. **Write Clean Code:**
+   * Keep your scripts modular and well-commented.
+   * Include a brief description of what the script does at the top of your file.
+   * Do not hardcode sensitive API keys, passwords, or personal tokens into your scripts. Use environment variables (`os.environ`).
+5. **Test Your Code:** Ensure your script runs without throwing syntax or dependency errors.
+6. **Submit a Pull Request:** Push your branch and open a Pull Request against our `main` branch. Provide a clear explanation of what your update achieves.
+
+Thank you for helping build a powerful, community-driven toolkit!
