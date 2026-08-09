@@ -1,6 +1,6 @@
 # 🚀 Automation Registry & Digital Operations Toolkit
 
-Welcome to the **Automation Registry**, a community-driven open-source initiative dedicated to sharing modular Python scripts, API integrations, workflow automations, and digital operational tools for freelancers, developers, and digital creators.
+Welcome to GBSS Agency **Automation Registry**, a community-driven open-source initiative dedicated to sharing modular Python scripts, API integrations, workflow automations, and digital operational tools for freelancers, developers, and digital creators.
 
 ---
 
