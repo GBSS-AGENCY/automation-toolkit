@@ -2,9 +2,11 @@ name: Automated Daily Product Scraper
 
 on:
   schedule:
-    # Runs at 00:00 UTC every day
     - cron: '0 0 * * *'
-  workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
+  workflow_dispatch: 
+
+permissions:
+  contents: write
 
 jobs:
   scrape-data:
@@ -12,10 +14,12 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -31,6 +35,6 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions Bot"
-          git add datasets/*
-          git commit -m "Automated dataset update" || echo "No changes to commit"
+          git add datasets/
+          git commit -m "Automated dataset update: Added latest product CSV" || echo "No changes to commit"
           git push
