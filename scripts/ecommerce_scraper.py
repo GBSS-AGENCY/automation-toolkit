@@ -4,15 +4,14 @@ import csv
 import datetime
 import os
 
-# Configuration
-TARGET_URL = "https://example.com/products" # Replace with actual target URL
+# Configuration updated to a real testing site
+TARGET_URL = "http://books.toscrape.com/" 
 OUTPUT_DIR = "datasets"
 OUTPUT_FILE = f"product_data_{datetime.datetime.now().strftime('%Y%m%d')}.csv"
 
 def fetch_product_data(url):
-    """Fetches and parses product data from the target URL."""
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
     }
     
     print(f"[*] Fetching data from: {url}")
@@ -25,19 +24,19 @@ def fetch_product_data(url):
     soup = BeautifulSoup(response.content, 'html.parser')
     products = []
 
-    # Modify these selectors based on the target website's HTML structure
-    items = soup.find_all('div', class_='product-item')
+    # Updated selectors specifically for books.toscrape.com
+    items = soup.find_all('article', class_='product_pod')
     
     for item in items:
-        name = item.find('h2', class_='product-title').text.strip() if item.find('h2', class_='product-title') else "N/A"
-        price = item.find('span', class_='product-price').text.strip() if item.find('span', class_='product-price') else "N/A"
+        # Extracting the book title and price
+        name = item.find('h3').find('a')['title'] if item.find('h3') else "N/A"
+        price = item.find('p', class_='price_color').text.strip() if item.find('p', class_='price_color') else "N/A"
         
         products.append({"Product Name": name, "Price": price})
         
     return products
 
 def save_to_csv(data):
-    """Saves the scraped data to a CSV file."""
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
         
@@ -56,4 +55,6 @@ if __name__ == "__main__":
     
     if scraped_data:
         save_to_csv(scraped_data)
+    else:
+        print("[!] No data was found. CSV creation skipped.")
     print("--- Process Complete ---")
