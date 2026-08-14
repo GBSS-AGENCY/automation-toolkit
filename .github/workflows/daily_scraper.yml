@@ -31,10 +31,13 @@ jobs:
       - name: Run Scraper Script
         run: python scripts/ecommerce_scraper.py
 
+      - name: Debug Status
+        run: git status
+
       - name: Commit and Push New Dataset
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions Bot"
           git add datasets/
-          git commit -m "Automated dataset update: Added latest product CSV" || echo "No changes to commit"
+          git diff --staged --quiet || git commit -m "Automated dataset update: Added latest product CSV"
           git push
